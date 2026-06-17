@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VELO - Interface</title>
+    <style>
+        /* 1. CONFIGURACIÓN DEL FONDO (ADAPTADO A MÓVILES) */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            /* Usamos dvh (dynamic viewport height) para evitar problemas con la barra de navegación de los celulares */
+            height: 100dvh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #000000 url('fondo.jpg') no-repeat center bottom;
+            background-size: cover;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .interface-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 400px; /* Evita que en pantallas grandes se estire demasiado */
+            padding: 20px;
+            gap: 50px; /* Espacio vertical regulado */
+            box-sizing: border-box;
+        }
+
+        /* 2. LOGO RESPONSIVE */
+        .logo {
+            width: 70%; /* En celulares ocupará el 70% del ancho de la pantalla */
+            max-width: 250px; /* En pantallas grandes no superará este tamaño */
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(0, 255, 102, 0.6));
+            /* Suaviza el cambio de tamaño si giras el celular */
+            transition: width 0.3s ease; 
+        }
+
+        /* 3. BOTÓN SWITCH RESPONSIVE */
+        .btn-switch {
+            width: 80%; /* Se adapta al ancho de la pantalla del celular */
+            max-width: 280px; 
+            height: 75px; /* Un poco más cómodo para el dedo en móviles */
+            background: #0d0d0d;
+            border: 2px solid #00ff66;
+            border-radius: 16px; /* Puntas curvas */
+            color: #00ff66;
+            font-size: 1.8rem; /* Tamaño de letra optimizado para móvil */
+            font-weight: bold;
+            letter-spacing: 3px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2), 
+                        inset 0 0 15px rgba(0, 255, 102, 0.1);
+            outline: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent; /* Elimina un molesto recuadro azul que ponen los celulares al tocar botones */
+        }
+
+        /* Efecto al presionar en el celular (Equivalente al hover de PC) */
+        .btn-switch:active {
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.5), 
+                        inset 0 0 20px rgba(0, 255, 102, 0.3);
+        }
+
+        /* 4. ESTADO DE ENCENDIDO (ON) */
+        .btn-switch.on {
+            background: #00ff66;
+            color: #000000;
+            box-shadow: 0 0 40px rgba(0, 255, 102, 0.8);
+            border-color: #00ff66;
+        }
+
+        /* 5. AJUSTES EXTRA PARA PANTALLAS MUY PEQUEÑAS (Media Query) */
+        @media (max-width: 360px) {
+            .interface-container {
+                gap: 30px;
+            }
+            .btn-switch {
+                height: 65px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="interface-container">
+        <img src="logo.png" alt="VELO Logo" class="logo">
+
+        <button class="btn-switch" id="switchBtn" onclick="toggleSwitch()">OFF</button>
+    </div>
+
+    <script>
+        function toggleSwitch() {
+            const boton = document.getElementById('switchBtn');
+            
+            if (boton.textContent === 'OFF') {
+                boton.textContent = 'ON';
+                boton.classList.add('on');
+            } else {
+                boton.textContent = 'OFF';
+                boton.classList.remove('on');
+            }
+        }
+    </script>
+
+</body>
+</html>
+</body>
+</html>
